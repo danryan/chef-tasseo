@@ -1,5 +1,5 @@
 server {
-  listen         80;
+  listen         <%= node[:tasseo][:nginx][:port] %>;
 
   # sets the domain[s] that this vhost serves requests for
   server_name <%= node[:fqdn] %> <%= node[:tasseo][:url] %>;

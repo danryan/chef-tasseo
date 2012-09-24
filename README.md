@@ -37,6 +37,10 @@ ATTRIBUTES
 * `default[:tasseo][:graphite_url]` - Sets the graphite url. Default: "localhost". You will want to change this.
 * `default[:tasseo][:graphite_auth]` - Sets the graphite auth. Default: "username:changeme". You will want to change this.
 * `default[:tasseo][:url]` - Sets the URL by which the Tasseo web interface will be accessed. Default: "tasseo.example.com". You will want to change this.
+* `default[:tasseo][:graphite_web_protocol]` - Set the protocol to use to contact the graphite. Defaults to https
+* `default[:tasseo][:graphite_server]` - Sets the graphite_server host for use with chef_solo
+* `default[:tasseo][:graphite_role]` - Sets the graphite server role to search
+* `default[:tasseo][:nginx][:port]` - Set the port the nginx vhost listens on. Defaults to 80
 
 RECIPES
 =======
