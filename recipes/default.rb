@@ -17,12 +17,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-graphite_node = search(:node, 'recipes:graphite\:\:default').first
+if Chef::Config[:solo]
+  graphite_host = node[:tasseo][:graphite_server]
+else
 
-if node[:fqdn] != graphite_node[:fqdn]
-  graphite_url = "https://#{graphite_node[:fqdn]}"
-  node.set[:tasseo][:graphite_url] = graphite_url
+  # Search for the graphite_role
+  graphite_node = search(:node, "role:#{node[:tasseo][:graphite_role]}").first
+
+  # Fall back to recipe
+  if graphite_node.empty?
+    graphite_node = search(:node, 'recipes:graphite\:\:default').first
+  end
+
+  graphite_host = graphite_node[:host]
+
 end
+
+graphite_url = "#{node[:tasseo][:graphite_web_protocol]}://#{graphite_host}"
+node.set[:tasseo][:graphite_url] = graphite_url
 
 include_recipe "runit"
 
@@ -47,6 +59,8 @@ end
 
 package "ruby-dev"
 package "build-essential"
+
+package "rubygems"
 
 gem_package "bundler"
 
