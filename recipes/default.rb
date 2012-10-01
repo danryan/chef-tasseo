@@ -48,6 +48,8 @@ end
 package "ruby-dev"
 package "build-essential"
 
+package "rubygems"
+
 gem_package "bundler"
 
 execute "bundle install" do
