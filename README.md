@@ -67,7 +67,7 @@ Create a `tasseo_server` role that will represent the base configuration that in
     )
     run_list(
       "recipe[tasseo::default]",
-      "recipe[tasseo::web]"
+      "recipe[tasseo::proxy_nginx]"
     )
 
 TEMPLATES
