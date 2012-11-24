@@ -2,7 +2,7 @@ server {
   listen         80;
 
   # sets the domain[s] that this vhost serves requests for
-  server_name <%= node[:fqdn] %> <%= node[:tasseo][:url] %>;
+  server_name <%= node['fqdn'] %> <%= node['tasseo']['url'] %>;
 
   # vhost specific access log
   access_log /var/log/nginx/tasseo.access.log;
