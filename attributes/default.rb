@@ -27,3 +27,4 @@ default[:tasseo][:git_repo]      = "https://github.com/obfuscurity/tasseo.git"
 default[:tasseo][:graphite_url]  = "localhost"
 default[:tasseo][:graphite_auth] = "username:changeme"
 default[:tasseo][:url]           = "tasseo.example.com"
+default[:tasseo][:search_query]  = 'recipes:graphite\:\:default'
