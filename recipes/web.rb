@@ -17,23 +17,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "nginx"
+include_recipe 'nginx'
 
-template "#{node[:nginx][:dir]}/sites-available/tasseo" do
-  source "nginx-tasseo-conf.erb"
+template "#{node['nginx']['dir']}/sites-available/tasseo" do
+  source 'nginx-tasseo-conf.erb'
   variables(
     :options => node[:tasseo]
   )
-  owner "root"
-  group "root"
+  owner 'root'
+  group 'root'
   mode 0644
-  notifies :reload, resources(:service => "nginx"), :delayed
+  notifies :reload, resources(:service => 'nginx'), :delayed
 end
 
-nginx_site "default" do
+nginx_site 'default' do
   enable false
 end
 
-nginx_site "tasseo" do
+nginx_site 'tasseo' do
   enable true
 end
