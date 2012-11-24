@@ -17,11 +17,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-graphite_node = search(:node, 'recipes:graphite\:\:default').first
+graphite_node = search(:node, node['tasseo']['search_query']).first
 
-if node[:fqdn] != graphite_node[:fqdn]
+if graphite_node && node[:fqdn] != graphite_node[:fqdn]
   graphite_url = "https://#{graphite_node[:fqdn]}"
   node.set[:tasseo][:graphite_url] = graphite_url
+else
+  Chef::Log.info "Could not discover graphite node matching #{node['tasseo']['search_query']}, falling back to node['tasseo']['graphite_url']: #{node['tasseo']['graphite_url']}"
 end
 
 include_recipe "runit"
