@@ -17,11 +17,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-graphite_node = search(:node, 'recipes:graphite\:\:default').first
+if Chef::Config[:solo]
+  Chef::Log.warn("This recipe uses search to find graphite. Chef Solo does not support search. Falling back to node['tasseo']['graphite_url'].")
+else
+  graphite_node = search(:node, 'recipes:graphite\:\:default').first
 
-if node['fqdn'] != graphite_node['fqdn']
-  graphite_url = "https://#{graphite_node['fqdn']}"
-  node.set['tasseo']['graphite_url'] = graphite_url
+  if node['fqdn'] != graphite_node['fqdn']
+    graphite_url = "https://#{graphite_node['fqdn']}"
+    node.set['tasseo']['graphite_url'] = graphite_url
+  end
 end
 
 include_recipe 'runit'
