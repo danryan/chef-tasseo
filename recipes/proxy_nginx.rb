@@ -1,7 +1,7 @@
 #
 # Author:: Dan Ryan <dan@crowdflower.com>
 # Cookbook Name:: tasseo
-# Recipe:: web
+# Recipe:: proxy_nginx
 #
 # Copyright 2012, CrowdFlower, Inc.
 #
